@@ -1,4 +1,5 @@
 {
+  "name": "fc-ddd-patterns_geraldojalves",
   "devDependencies": {
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.148",
