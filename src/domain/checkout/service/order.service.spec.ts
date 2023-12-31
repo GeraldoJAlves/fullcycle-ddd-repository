@@ -12,6 +12,14 @@ describe("Order service unit tets", () => {
     expect(order.total()).toBe(10);
   });
 
+  it("should throw if no items is provided", () => {
+    const customer = new Customer("c1", "Customer 1");
+
+    expect(() => {
+      OrderService.placeOrder(customer, []);
+    }).toThrow("Order must have at least one item");
+  });
+
   it("should get total of all orders", () => {
     const item1 = new OrderItem("i1", "Item 1", 100, "p1", 1);
     const item2 = new OrderItem("i2", "Item 2", 200, "p2", 2);
