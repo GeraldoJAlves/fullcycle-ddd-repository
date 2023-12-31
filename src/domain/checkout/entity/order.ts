@@ -23,6 +23,28 @@ export default class Order {
     return this._items;
   }
 
+  addItem(orderItem: OrderItem): void {
+    if (orderItem.quantity <= 0) {
+      throw new Error("Quantity must be greater than 0");
+    }
+    this._items.push(orderItem)
+  }
+
+  removeItem(orderItem: OrderItem): void {
+    if (this._items.length === 1) {
+      throw new Error("Must have at least one order item");
+    }
+
+    this._items = this.items.filter((item) => item.id !== orderItem.id)
+  }
+
+  changeCustomer(customerId: string) {
+    if (customerId.length === 0) {
+      throw new Error("CustomerId is required");
+    }
+    this._customerId = customerId
+  }
+
   validate(): boolean {
     if (this._id.length === 0) {
       throw new Error("Id is required");
@@ -33,7 +55,6 @@ export default class Order {
     if (this._items.length === 0) {
       throw new Error("Items are required");
     }
-
     if (this._items.some((item) => item.quantity <= 0)) {
       throw new Error("Quantity must be greater than 0");
     }
