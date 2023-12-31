@@ -3,6 +3,11 @@ import ProductCreatedEvent from "../../product/event/product-created.event";
 import { EventDispatcher } from ".";
 
 describe("Domain events tests", () => {
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it("should register an event handler", () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SendEmailWhenProductIsCreatedHandler();
@@ -61,6 +66,8 @@ describe("Domain events tests", () => {
     const eventDispatcher = new EventDispatcher();
     const eventHandler = new SendEmailWhenProductIsCreatedHandler();
     const spyEventHandler = jest.spyOn(eventHandler, "handle");
+    const spyConsoleLog = jest.spyOn(console, "log");
+    spyConsoleLog.mockReturnValueOnce()
 
     eventDispatcher.register("ProductCreatedEvent", eventHandler);
 
@@ -78,5 +85,6 @@ describe("Domain events tests", () => {
     eventDispatcher.notify(productCreatedEvent);
 
     expect(spyEventHandler).toHaveBeenCalled();
+    expect(spyConsoleLog).toHaveBeenCalled();
   });
 });

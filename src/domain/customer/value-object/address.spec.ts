@@ -14,24 +14,24 @@ describe("Address value object", () => {
   it("should throw if street is not provided", () => {
     expect(() => {
       new Address("", 1, "zip 1", "city 1");
-    }).toThrow("Street is required");
+    }).toThrowError("Street is required");
   });
 
   it("should throw if number is invalid", () => {
     expect(() => {
       new Address("street", 0, "zip 1", "city 1");
-    }).toThrow("Number is required");
+    }).toThrowError("Number is required");
   });
 
   it("should throw if number is invalid", () => {
     expect(() => {
       new Address("street", 1, "", "city 1");
-    }).toThrow("Zip is required");
+    }).toThrowError("Zip is required");
   });
 
   it("should throw if number is invalid", () => {
     expect(() => {
       new Address("street", 1, "zip 1", "");
-    }).toThrow("City is required");
+    }).toThrowError("City is required");
   });
 });
