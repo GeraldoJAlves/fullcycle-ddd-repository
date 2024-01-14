@@ -23,7 +23,7 @@ describe("E2E test for customer", () => {
         },
       });
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(response.body.name).toBe("John");
     expect(response.body.address.street).toBe("Street");
     expect(response.body.address.city).toBe("City");
@@ -50,7 +50,7 @@ describe("E2E test for customer", () => {
           zip: "12345",
         },
       });
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     const response2 = await request(app)
       .post("/customer")
       .send({
@@ -62,7 +62,7 @@ describe("E2E test for customer", () => {
           zip: "12344",
         },
       });
-    expect(response2.status).toBe(200);
+    expect(response2.status).toBe(201);
 
     const listResponse = await request(app).get("/customer").send();
 
