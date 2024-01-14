@@ -28,6 +28,7 @@ export default {
     '!<rootDir>/src/**/index.ts',
     '!<rootDir>/src/**/*.interface.ts',
     '!<rootDir>/src/**/*.model.ts',
+    '!<rootDir>/src/**/server.ts',
     '!<rootDir>/src/**/test/*.ts',
   ],
 
