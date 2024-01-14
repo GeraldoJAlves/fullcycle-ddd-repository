@@ -6,8 +6,8 @@ import { ListCustomerUseCase } from "@/usecase/customer/list";
 export const customerRoute = express.Router();
 
 customerRoute.post("/", async (req: Request, res: Response) => {
-  const usecase = new CreateCustomerUseCase(new CustomerRepository());
   try {
+    const usecase = new CreateCustomerUseCase(new CustomerRepository());
     const customerDto = {
       name: req.body.name,
       address: {
@@ -18,14 +18,19 @@ customerRoute.post("/", async (req: Request, res: Response) => {
       },
     };
     const output = await usecase.execute(customerDto);
-    res.send(output);
+    res.status(201).send(output);
   } catch (err) {
     res.status(500).send(err);
   }
 });
 
 customerRoute.get("/", async (req: Request, res: Response) => {
-  const usecase = new ListCustomerUseCase(new CustomerRepository());
-  const output = await usecase.execute({});
-  res.send(output)
+  try {
+    const usecase = new ListCustomerUseCase(new CustomerRepository());
+    const output = await usecase.execute({});
+    res.send(output);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send();
+  }
 });
