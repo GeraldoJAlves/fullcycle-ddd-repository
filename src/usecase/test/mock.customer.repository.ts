@@ -7,10 +7,11 @@ const customerModel = CustomerFactory.createWithAddress("john", new Address("str
 
 export class CustomerRepositorySpy implements CustomerRepositoryInterface {
     findInputId: string;
+    createInput: Customer;
     customerModel = customerModel;
 
-    create(entity: Customer): Promise<void> {
-        throw new Error("Method not implemented.")
+    async create(entity: Customer): Promise<void> {
+        this.createInput = entity
     }
 
     update(entity: Customer): Promise<void> {
