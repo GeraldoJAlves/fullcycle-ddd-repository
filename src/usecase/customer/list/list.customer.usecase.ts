@@ -1,9 +1,9 @@
 import { CustomerRepositoryInterface } from "@/domain/customer/repository";
+import { Customer } from "@/domain/customer/entity";
 import {
   InputListCustomerDTO,
   OutputListCustomerDTO,
-} from "./list.customer.dto";
-import { Customer } from "@/domain/customer/entity";
+} from ".";
 
 export default class ListCustomerUseCase {
   constructor(

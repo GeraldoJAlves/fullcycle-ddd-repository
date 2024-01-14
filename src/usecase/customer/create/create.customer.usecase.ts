@@ -4,7 +4,7 @@ import { Address } from "@/domain/customer/value-object";
 import {
   InputCreateCustomerDTO,
   OutputCreateCustomerDTO,
-} from "./create.customer.dto";
+} from ".";
 
 export class CreateCustomerUseCase {
   constructor(
