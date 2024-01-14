@@ -2,7 +2,7 @@ export interface InputFindCustomerDTO {
   id: string;
 }
 
-export interface OuputFindCustomerDTO {
+export interface OutputFindCustomerDTO {
   id: string;
   name: string;
   address: {

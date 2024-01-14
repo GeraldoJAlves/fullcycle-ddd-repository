@@ -1,9 +1,9 @@
 import { ProductRepositorySpy } from "@/usecase/test";
-import CreateProuctUseCase from "./create.product.usecase";
+import { CreateProductUseCase } from ".";
 
 const makeSut = () => {
   const repository = new ProductRepositorySpy();
-  const sut = new CreateProuctUseCase(repository);
+  const sut = new CreateProductUseCase(repository);
 
   return {
     sut,

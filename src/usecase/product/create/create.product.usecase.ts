@@ -6,7 +6,7 @@ import {
   OutputCreateProductDTO,
 } from ".";
 
-export default class CreateProuctUseCase {
+export default class CreateProductUseCase {
   constructor(private readonly productRepository: ProductRepositoryInterface) {}
 
   async execute(input: InputCreateProductDTO): Promise<OutputCreateProductDTO> {
