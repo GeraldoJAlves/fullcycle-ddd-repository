@@ -3,27 +3,31 @@ import { CustomerFactory } from "@/domain/customer/factory";
 import { CustomerRepositoryInterface } from "@/domain/customer/repository";
 import { Address } from "@/domain/customer/value-object";
 
-const customerModel = CustomerFactory.createWithAddress("john", new Address("street", 1, "zip", "city"))
+const customerModel = CustomerFactory.createWithAddress(
+  "john",
+  new Address("street", 1, "zip", "city")
+);
 
 export class CustomerRepositorySpy implements CustomerRepositoryInterface {
-    findInputId: string;
-    createInput: Customer;
-    customerModel = customerModel;
+  findInputId: string;
+  createInput: Customer;
+  updateInput: Customer;
+  customerModel = customerModel;
 
-    async create(entity: Customer): Promise<void> {
-        this.createInput = entity
-    }
+  async create(entity: Customer): Promise<void> {
+    this.createInput = entity;
+  }
 
-    update(entity: Customer): Promise<void> {
-        throw new Error("Method not implemented.")
-    }
+  async update(entity: Customer): Promise<void> {
+    this.updateInput = entity;
+  }
 
-    findAll(): Promise<Customer[]> {
-        throw new Error("Method not implemented.")
-    }
+  findAll(): Promise<Customer[]> {
+    throw new Error("Method not implemented.");
+  }
 
-    find(id: string): Promise<Customer> {
-        this.findInputId = id
-        return Promise.resolve(this.customerModel)
-    }
+  find(id: string): Promise<Customer> {
+    this.findInputId = id;
+    return Promise.resolve(this.customerModel);
+  }
 }
