@@ -1,5 +1,6 @@
 import { CustomerRepositorySpy } from "@/usecase/test";
 import { CreateCustomerUseCase } from ".";
+import { CustomerFactory } from "@/domain/customer/factory";
 
 const makeSut = () => {
   const repository = new CustomerRepositorySpy();
@@ -43,5 +44,54 @@ describe("CreateCustomer usecase", () => {
         zip: customerModel.Address.zip,
       },
     });
+  });
+
+
+  it("should throw an error if CustomerFactory throws", () => {
+    const { sut, customerRepositorySpy } = makeSut();
+
+    const customerModel = customerRepositorySpy.customerModel;
+
+    const input = {
+      name: customerModel.name,
+      address: {
+        street: customerModel.Address.street,
+        number: customerModel.Address.number,
+        city: customerModel.Address.city,
+        zip: customerModel.Address.zip,
+      },
+    };
+
+    jest
+      .spyOn(CustomerFactory, "createWithAddress")
+      .mockImplementationOnce(() => { throw new Error("name is invalid")});
+
+    expect(async () => {
+      await sut.execute(input);
+    }).rejects.toThrowError("name is invalid");
+  });
+
+  it("should throw an error if CustomerRepository throws", () => {
+    const { sut, customerRepositorySpy } = makeSut();
+
+    const customerModel = customerRepositorySpy.customerModel;
+
+    const input = {
+      name: customerModel.name,
+      address: {
+        street: customerModel.Address.street,
+        number: customerModel.Address.number,
+        city: customerModel.Address.city,
+        zip: customerModel.Address.zip,
+      },
+    };
+
+    jest
+      .spyOn(customerRepositorySpy, "create")
+      .mockRejectedValueOnce(new Error("error to create customer"));
+
+    expect(async () => {
+      await sut.execute(input);
+    }).rejects.toThrowError("error to create customer");
   });
 });
