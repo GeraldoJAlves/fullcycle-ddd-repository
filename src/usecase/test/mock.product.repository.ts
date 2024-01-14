@@ -7,14 +7,15 @@ const productModelBall = ProductFactory.create("a", "ball", 2.99) as Product;
 export class ProductRepositorySpy implements ProductRepositoryInterface {
   findInput: string;
   createInput: Product;
+  updateInput: Product
   productModel = productModelBall;
 
   async create(entity: Product): Promise<void> {
     this.createInput = entity;
   }
 
-  update(entity: Product): Promise<void> {
-    throw new Error("Method not implemented.");
+  async update(entity: Product): Promise<void> {
+    this.updateInput = entity
   }
 
   find(id: string): Promise<Product> {
