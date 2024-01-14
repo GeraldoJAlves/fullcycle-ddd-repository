@@ -1,4 +1,5 @@
-export interface InputCreateCustomerDTO {
+export interface InputUpdateCustomerDTO {
+  id: string;
   name: string;
   address: {
     street: string;
@@ -8,7 +9,7 @@ export interface InputCreateCustomerDTO {
   };
 }
 
-export interface OutputCreateCustomerDTO {
+export interface OutputUpdateCustomerDTO {
   id: string;
   name: string;
   address: {
