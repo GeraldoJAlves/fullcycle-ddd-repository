@@ -20,7 +20,7 @@ export class CreateCustomerUseCase {
         input.address.street,
         input.address.number,
         input.address.zip,
-        input.address.zip
+        input.address.city
       )
     );
 
