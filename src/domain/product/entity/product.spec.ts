@@ -24,7 +24,7 @@ describe("Product unit tests", () => {
   it("should throw error when price is less than zero", () => {
     expect(() => {
       new Product("123", "Name", -1);
-    }).toThrowError("Product: Price must be greater or equal than zero");
+    }).toThrowError("Product: price must be greater than or equal to 0");
 
     expect(() => {
       new ProductB("123", "Name", -1);
@@ -54,6 +54,6 @@ describe("Product unit tests", () => {
   it("should throw NotificationError when invalid information is provided", () => {
       expect(() => {
         new Product("", "", -1);
-      }).toThrowError("Product: Id is required, Product: Name is required, Product: Price must be greater or equal than zero");
+      }).toThrowError("Product: Id is required, Product: Name is required, Product: price must be greater than or equal to 0");
   })
 });
