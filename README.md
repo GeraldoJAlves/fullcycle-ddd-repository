@@ -6,3 +6,7 @@ Fullcycle Domain Driven Design
 - Express
 - Typescript
 - Jest
+
+### Test
+
+`npm run test`
